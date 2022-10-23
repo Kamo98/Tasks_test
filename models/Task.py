@@ -4,7 +4,8 @@ from sqlalchemy.dialects.postgresql import UUID
 import uuid
 
 
-# Модель задачи
+# Модель задачи для БД
+
 class Task(Base):
     __tablename__ = "task"
 

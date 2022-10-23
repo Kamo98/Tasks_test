@@ -7,6 +7,6 @@ engine = create_engine(DATABASE_URL, echo=True)
 # Получение базовой ORM сущности
 Base = declarative_base()
 # Создание сессии
-Session = sessionmaker(bind=engine)
+SessionDB = sessionmaker(bind=engine)
 
 
