@@ -1,8 +1,7 @@
 from typing import List
 
 from database import SessionDB
-from models.Task import Task as ModelTask
-from fastapi.responses import JSONResponse
+from models.task_model import Task as ModelTask
 import uuid
 
 
@@ -26,6 +25,7 @@ class TaskRepository:
 
         # Если задача не найдена
         if task is None:
+            #todo: выбрасывать исключение
             return None
 
         # Обновление полей
