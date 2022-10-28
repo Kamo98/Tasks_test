@@ -1,0 +1,29 @@
+version: "3"
+
+services:
+  app:
+    build: .
+    ports:
+      - "8000:8000"
+    container_name: tasks_app
+    network_mode: host
+    depends_on:
+      - db_pg
+#    networks:
+#      - app_net
+  db_pg:
+    image: postgres
+    container_name: db_pg
+#    network_mode: host
+    environment:
+      - POSTGRES_DB=Tasks
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - "5432:5432"
+#    networks:
+#      - app_net
+
+#networks:
+#  app_net:
+#    driver: bridge

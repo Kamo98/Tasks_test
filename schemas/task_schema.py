@@ -1,7 +1,7 @@
 from pydantic import BaseModel, UUID4
 
+# Модели задачи для клиента
 
-# Модель задачи для клиента
 
 class TaskParams (BaseModel):
     param_1: str
@@ -11,8 +11,16 @@ class TaskParams (BaseModel):
         orm_mode = True
 
 
-class Task (BaseModel):
-    task_uuid: UUID4    #todo: сделать необязательным
+class TaskOut (BaseModel):
+    task_uuid: UUID4
+    description: str
+    params: TaskParams
+
+    class Config:
+        orm_mode = True
+
+
+class TaskIn (BaseModel):
     description: str
     params: TaskParams
 
