@@ -14,16 +14,17 @@ task_service = TaskService(TaskRepository())
     "/tasks/add",
     status_code=status.HTTP_201_CREATED
 )
-async def create_task(task: SchemaTaskIn):
+def create_task(task: SchemaTaskIn):
     task_service.create(task)
 
 
+# todo: сделать пагинацию
 @router.get(
     "/tasks",
     response_model=List[SchemaTaskOut],
     status_code=status.HTTP_200_OK
 )
-async def get_all_tasks() -> List[SchemaTaskOut]:
+def get_all_tasks() -> List[SchemaTaskOut]:
     return task_service.get_all()
 
 
@@ -31,5 +32,5 @@ async def get_all_tasks() -> List[SchemaTaskOut]:
     "/tasks/{task_id}",
     status_code=status.HTTP_200_OK
 )
-async def update_task(task_id: UUID4, task: SchemaTaskIn):
+def update_task(task_id: UUID4, task: SchemaTaskIn):
     task_service.update(task_id, task)

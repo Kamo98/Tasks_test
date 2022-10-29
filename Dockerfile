@@ -4,8 +4,8 @@ WORKDIR /app
 
 ADD requirements.txt requirements.txt
 
-# install psycopg2 dependencies
 RUN apk update
+# install psycopg2 dependencies
 RUN apk add postgresql-dev gcc python3-dev musl-dev
 RUN pip install -r requirements.txt
 

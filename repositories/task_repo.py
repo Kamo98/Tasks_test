@@ -1,9 +1,8 @@
+import uuid
 from typing import List
-
 from database import SessionDB
 from models.task_model import Task as ModelTask
-import uuid
-
+from exceptions import TaskNotFoundException
 
 class TaskRepository:
     def __init__(self):
@@ -25,8 +24,7 @@ class TaskRepository:
 
         # Если задача не найдена
         if task is None:
-            #todo: выбрасывать исключение
-            return None
+            raise TaskNotFoundException(msg="Task not found")
 
         # Обновление полей
         task.description = description

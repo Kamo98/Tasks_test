@@ -20,6 +20,7 @@ class TaskOut (BaseModel):
         orm_mode = True
 
 
+# todo: сделать валидацию на длину строк
 class TaskIn (BaseModel):
     description: str
     params: TaskParams

@@ -23,14 +23,17 @@ class TaskService:
     # Получение всех задач
     def get_all(self):
         tasks = self.repo.get_all()
-        schema_tasks = [SchemaTaskOut(
-            task_uuid=t.task_uuid,
-            description=t.description,
-            params=TaskParams(
-                param_1=t.param_1,
-                param_2=t.param_2
+        schema_tasks = [
+            SchemaTaskOut(
+                task_uuid=t.task_uuid,
+                description=t.description,
+                params=TaskParams(
+                    param_1=t.param_1,
+                    param_2=t.param_2
+                )
             )
-        ) for t in tasks]
+            for t in tasks
+        ]
         return schema_tasks
 
     # Обновление задачи
