@@ -1,10 +1,11 @@
-from pydantic import BaseModel, UUID4
+from pydantic import BaseModel, UUID4, Field
+
 
 # Модели задачи для клиента
 
 
 class TaskParams (BaseModel):
-    param_1: str
+    param_1: str = Field(max_length=10)
     param_2: int
 
     class Config:
@@ -20,9 +21,8 @@ class TaskOut (BaseModel):
         orm_mode = True
 
 
-# todo: сделать валидацию на длину строк
 class TaskIn (BaseModel):
-    description: str
+    description: str = Field(max_length=20)
     params: TaskParams
 
     class Config:

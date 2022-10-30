@@ -22,7 +22,6 @@ def create_task(task: SchemaTaskIn):
     task_service.create(task)
 
 
-# todo: сделать пагинацию
 @router.get(
     "/tasks",
     response_model=List[SchemaTaskOut],

@@ -10,6 +10,6 @@ class Task(Base):
     __tablename__ = "task"
 
     task_uuid = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
-    description = Column(String(255))
-    param_1 = Column(String(50))
+    description = Column(String(20))
+    param_1 = Column(String(10))
     param_2 = Column(Integer)
