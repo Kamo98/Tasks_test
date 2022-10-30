@@ -4,6 +4,8 @@ from endpoints.task_endpoint import router
 from fastapi import Request
 from fastapi.responses import JSONResponse
 from exceptions import TaskNotFoundException
+from database import Base, engine
+from models import task_model
 
 app = FastAPI()
 app.include_router(router)
@@ -17,6 +19,11 @@ def task_not_found_exception_handler(request: Request, exception: TaskNotFoundEx
     )
 
 
+@app.on_event("startup")
+def on_startup():
+    Base.metadata.create_all(bind=engine)
+
+
 if __name__ == "__main__":
     # Для удобства тестирования и отладки
-    uvicorn.run(app="main:app", host="127.0.0.1", port=8000, reload=True)
+    uvicorn.run(app="main:app", host="0.0.0.0", port=8000, reload=True)

@@ -6,6 +6,10 @@ from schemas.task_schema import TaskIn as SchemaTaskIn
 from typing import List
 from pydantic import UUID4
 
+from database import Base, engine
+from models import task_model
+
+
 router = APIRouter()
 task_service = TaskService(TaskRepository())
 

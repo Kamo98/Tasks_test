@@ -1,29 +1,28 @@
-version: "3"
+version: "3.8"
 
 services:
-  app:
+  tasks_app:
     build: .
+    container_name: tasks_app
+    command: uvicorn main:app --reload --host 0.0.0.0 --port 8000
     ports:
       - "8000:8000"
-    container_name: tasks_app
-    network_mode: host
+    links:
+      - tasks_db
     depends_on:
-      - db_pg
-#    networks:
-#      - app_net
-  db_pg:
+      - tasks_db
+    restart: always
+
+  tasks_db:
     image: postgres
-    container_name: db_pg
-#    network_mode: host
+    container_name: tasks_db
     environment:
       - POSTGRES_DB=Tasks
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
+      - PGDATA=/var/lib/postgresql/data/pgdata
     ports:
       - "5432:5432"
-#    networks:
-#      - app_net
-
-#networks:
-#  app_net:
-#    driver: bridge
+    volumes:
+      - ./pg_data:/var/lib/postgresql/data/pgdata
+    restart: always
