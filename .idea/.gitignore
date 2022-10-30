@@ -1,9 +1,0 @@
-# Default ignored files
-/shelf/
-/workspace.xml
-
-.idea
-test.db
-log.txt
-env
-venv
