@@ -10,7 +10,8 @@ services:
     links:
       - tasks_db
     depends_on:
-      - tasks_db
+      tasks_db:
+        condition: service_healthy
     restart: always
 
   tasks_db:
@@ -26,3 +27,8 @@ services:
     volumes:
       - ./pg_data:/var/lib/postgresql/data/pgdata
     restart: always
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
